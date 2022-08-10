@@ -2,7 +2,7 @@
 
 const express = require('express')
 const path = require('path');
-const temp = require('../src/temperature.js')
+const convertTemperature = require('../src/temperature.js')
 
 const app = express()
 const port = process.env.PORT || 3000	// get environ variable or default
@@ -12,25 +12,21 @@ app.use(express.static(publicPath));
 
 
 app.get('/:temperature', (req, res) => {
-	var centigrade = req.params.temperature
-	console.log('Centigrade: ' + centigrade)
+	var temperature = req.params.temperature
+	var degrees = temperature.slice(-1)	// check if F or C passed
+	var degreesLabel = 'Fahrenheit:'
+	if (degrees.toUpperCase() == 'F') { degreesLabel = 'Celcius:' }
 
-	const fahrenheit = temp(centigrade)
+	const convertedTemperature = convertTemperature(temperature, degrees)
 
-	console.log('Fahrenheit: ' + fahrenheit)
+	console.log(degreesLabel + ' ' + temperature)
+	console.log(degreesLabel + ' ' + convertedTemperature)
 
 	res.send({
-		temperature: fahrenheit,
-		degrees: 'Fahrenheit'
+		temperature: convertedTemperature,
+		degrees: degreesLabel
 	});
 });
-
-app.get('/help', (req, res) => {
-	res.send({
-		name: 'Andrew',
-		email: 'andrew.yamane@gmail.com'
-	})
-})
 
 // start the server
 app.listen(port, () => {
