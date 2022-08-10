@@ -5,6 +5,8 @@ const path = require('path');
 const temp = require('../src/temperature.js')
 
 const app = express()
+const port = process.env.PORT || 3000	// get environ variable or default
+
 const publicPath = path.join(__dirname, '../public');
 app.use(express.static(publicPath));
 
@@ -31,6 +33,6 @@ app.get('/help', (req, res) => {
 })
 
 // start the server
-app.listen(3000, () => {
-	console.log('server is up on port 3000')
+app.listen(port, () => {
+	console.log('server is up on port ' + port)
 })
