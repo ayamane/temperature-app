@@ -10,7 +10,7 @@
  * Celcius
  */
 const convertTemperature = function (temperature) {
-	var convertedTemperature = 0
+	var convertedTemperature
 	var dimension = getTemperatureDimension(temperature)
 	var temperatureNbr = getTemperatureNumber(temperature)
 
