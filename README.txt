@@ -16,6 +16,13 @@ Instructions to build and deploy:
 	npm init
 	npm i express
 	npm i path
-	node server.js
+	npm i jest --save-dev
+
+	to run from main project folder
+	node server/server.js
+	navigate to localhost:3000
+
+	to run tests from main project folder
+	npm test
 
 A working example can be found at:  https://mighty-badlands-45305.herokuapp.com/
