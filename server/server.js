@@ -20,7 +20,7 @@ app.get('/:temperature', (req, res) => {
 
 	const convertedTemperature = temperature.convertTemperature(temperatureParam)
 
-	res.send({
+	res.json({
 		temperature: convertedTemperature,
 		degrees: degreesLabel
 	});
